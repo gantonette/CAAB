@@ -1,0 +1,359 @@
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+
+* {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #F6F4D2;
+}
+
+
+#header {
+  text-align: center;
+  padding: 30px;
+  height : 70px;
+  color: #D4E09B;
+}
+
+input:invalid {
+  background-color: pink;
+}
+
+form:invalid button[type="submit"] {
+  opacity: 0.5;
+}
+
+/***************************************************
+****************** login *************************
+*************************************************/
+
+
+#loginPage {
+  color: #A44A3F; 
+  text-align: center;
+  background-color: #F6F4D2;
+  width: 70%;
+  margin: auto;
+ padding: 200px;
+}
+
+#login-details {
+  color: #A44A3F; 
+}
+
+#loginPage input[type=username], #loginPage input[type=password] {   
+  width: 40%;   
+  margin: 8px 0;  
+  padding: 12px 20px;   
+  display: inline-block;   
+  border: 2px solid #F19C79;   
+  box-sizing: border-box;   
+  border-radius: 20px;
+} 
+
+#loginPage button,
+#loginPage input,
+#studentDashboard button,
+#lecturerDashboard button {
+  background-color: #F19C79;
+  color: #A44A3F;
+  margin-bottom: 10px;
+  border-radius: 25px;
+  padding: 7px;
+} 
+
+#loginPage button:hover, 
+#loginPage input:hover,
+#studentDashboard button:hover,
+#lecturerDashboard button:hover {
+  background-color: #A44A3F;
+  color: #F19C79;
+} 
+
+
+/* code from net ninja (angularjs #22)*/
+#loginPage input.ng-invalid.ng-touched, #loginPage textarea.ng-invalid.ng-touched{
+  border: 2px solid red;
+}
+
+#loginPage input[disabled="disabled"]{
+  opacity: 0.4;
+  cursor: not-allowed !important;
+}
+
+
+
+/***************************************************
+****************** Dashboard *************************
+*************************************************/
+.studentDashboard th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid rgb(73, 50, 24);
+  background-color: #CBDFBD;
+  align-items: center;
+}
+
+#studentDashboard {
+  color: #A44A3F; 
+  align-items: center;
+  text-align: center;
+  background-color: #F6F4D2;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+#studentDashboard > table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#lecturerDashboard {
+  color: #3b0d06; 
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+#lecturerDashboard > table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/***************************************************
+****************** Student Course Info *************************
+*************************************************/
+.studentCourseInfo {
+  background-color: rgb(255, 255, 255);
+  border: solid;
+  border-color: white;
+  border-radius: 25px;
+  padding: 30px;
+  margin: 30px;
+  color: black;
+  float: left;
+  width: 90%;
+}
+
+.studentCourseInfo h1{
+  background-color: #b2cea1;
+  padding: 20px;
+  color:#A44A3F;
+  font-size: x-large;
+  float: left;
+  width: 90%;
+}
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 23px;
+  width: 23px;
+  background-color: white;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #F6F4D2;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #F19C79;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 6px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+.studentCourseInfo button {
+  background-color: #A44A3F;
+  color: white;
+  border: solid;
+  border-color: #A44A3F ;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.studentCourseInfo button:hover {
+  background-color: #F19C79;
+}
+
+
+/***************************************************
+****************** Lecturer Course Info *************************
+*************************************************/
+
+.lecturerCourseInfo {
+  background-color: #F6F4D2;
+  padding: 70px;
+  color: black;
+  float: left;
+  width: 100%;
+}
+
+.lecturerCourseInfo h1{
+  background-color: #F19C79;
+  padding: 20px;
+  color: white;
+  font-size: x-large;
+  float: left;
+  width: 100%;
+}
+
+.lecturerCourseInfo button {
+  background-color: #A44A3F;
+  color: white;
+  border: solid;
+  border-color: #A44A3F ;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.lecturerCourseInfo button:hover {
+  background-color: #F19C79;
+}
+
+/***************************************************
+****************** Lecturer Add Assignments *************************
+*************************************************/
+
+#add-Assignments{
+  border:2px solid black;
+  background-color: #CBDFBD;
+  display:inline-block;
+  text-align:center;
+  padding: 40px;
+  width:100%;
+}
+
+
+ #add-Assignments>input{
+  display:block;
+  margin-left:10%;
+  margin-bottom:10px;
+  width:80%;
+}
+
+#add-Assignments>button {
+   background-color: #A44A3F;
+  color: white;
+  border: solid;
+  border-color: #A44A3F ;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+
+#edit-Assignments {
+  border:2px solid black;
+  background-color: #CBDFBD;
+  display:inline-block;
+  text-align:center;
+  width:400px;
+  padding: 40px;
+  width:100%;
+}
+
+ #edit-Assignments>input{
+  display:block;
+  margin-left:10%;
+  margin-bottom:10px;
+  width:80%;
+}
+
+#edit-Assignments>button {
+   background-color: #A44A3F;
+  color: white;
+  border: solid;
+  border-color: #A44A3F ;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+
+#add-Courses{
+  border:2px solid black;
+  background-color: #CBDFBD;
+  display:inline-block;
+  text-align:center;
+  padding: 40px;
+  width:100%;
+}
+
+
+ #add-Courses>input{
+  display:block;
+  margin-left:10%;
+  margin-bottom:10px;
+  width:80%;
+}
+
+#addCourseButton {
+background-color: #A44A3F;
+  color: white;
+  border: solid;
+  border-color: #A44A3F ;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+

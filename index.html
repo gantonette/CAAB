@@ -1,0 +1,302 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="lib/script.js"></script>
+     <link rel="stylesheet" href="lib/style.css" />
+  </head>
+
+  <body ng-app="myApplication" ng-controller="myController" ng-cloak>
+
+
+
+
+<!-- ************** LOGIN PAGE *********************
+***************************************************
+************************************************** -->
+
+     <div id="loginPage" ng-show="loginPage">
+      <h2> LOGIN PAGE </h2>
+      <form name="loginForm">
+        <form action="">
+          <label for="username">username:</label>
+          <input type= "username" id="username" placeholder="Enter your username" ng-model="username" required>
+          <br>
+          <label for="password">password:</label>
+          <input type= "password" id="password" placeholder="Enter your password" ng-model="password" required>
+          <br>
+          <button ng-click="validateLogin()" type="submit" >LOGIN</button>
+          <input type="reset" value="CANCEL" id="reset">
+        </form>
+      </form>
+    </div>
+
+<!-- ************** END LOGIN PAGE ********************* -->
+
+
+<!---****************- Student Navigation Bar *************-->
+<div id="studentDashboard" ng-show="navBar">
+<button ng-click="showStudentDashboard()">All Courses</button>
+<button ng-click="showStudentAddCoursePage()">Add Course</button>
+<button ng-click="showStudentAssignmentPage()">All Assignments</button>
+<button ng-click="logOut()">Sign Out</button>
+</div>
+  
+
+<!-- ********* STUDENT DASHBOARD PAGE ******************
+***************************************************
+************************************************** -->
+
+<div id="studentDashboard" ng-show="studentDashboard">
+
+  <h2> STUDENT Dashboard </h2>
+  <h3> Welcome back, {{username}} </h3>
+  <table>
+        <th>CourseID</th>
+        <th>Name</th>
+        <th>Overview</th>
+        <th>Year</th>
+        <th>Trimester</th>
+        <th>LectureTimes</th>
+        <tr ng-repeat="x in courseDirectoryData.courses">
+            <td><button ng-click="courseDisplay(x.ID, x.Name, x.Overview, x.Year, x.Trimester, x.LectureTimes)" >{{x.ID}} </button></td>
+            <td>{{x.Name}}</td>
+            <td>{{x.Overview}}</td>
+            <td>{{x.Year}}</td>
+            <td>{{x.Trimester}}</td>
+            <td>{{x.LectureTimes}}</td>
+            <td><button ng-click="deleteCourse(x.ID)">Delete</button></td>
+        </tr>
+  </table>
+  <button class="btn btn-success" ng-click="getCourseData()">Reload Data!</button>
+</div>
+
+
+<!-- *************** Student Assignment Page *********** -->
+<div id="studentDashboard" ng-show="studentAssignmentDirectory">
+<h2> Student Assignment </h2>
+  <table>
+    <th>assignments</th>
+    <th>course</th>
+    <th>details</th>
+    <th>deadline</th>
+  <tr ng-repeat="x in assigDirectoryData.assignments">
+      <td><button ng-click="assignmentDisplay(x.CourseID, x.Name, x.Overview, x.DueDate)" >{{x.Name}} </button></td>
+      <td>{{x.CourseID}}</td>
+      <td>{{x.Overview}}</td>
+      <td>{{x.DueDate}}</td>
+  </tr>
+  </table>
+  <button class="btn btn-success" ng-click="fetchAssigDirectory()">Reload Data!</button>
+</div>
+
+
+
+
+
+
+<!-- ********* LECTURER DASHBOARD PAGE ******************
+***************************************************
+************************************************** -->
+
+
+<!---****************- Lecturer Navigation Bar *************-->
+<div id="studentDashboard" ng-show="navBarLecturer">
+<button ng-click="showLecturerDashboard()">All Courses</button>
+<button ng-click="showLecturerAddCoursePage()">Add Course</button>
+<button ng-click="showLecturerAssignmentDirectory()">All Assignments</button>
+<button ng-click="showAddAssignmentPage()">Add Assignments</button>
+<button ng-click="showCourseAssociation()" >Course Association</button>
+<button ng-click="logOut()">Sign Out</button>
+</div>
+
+<!---****************- Lecturer DASHBOARD PAGE *************-->
+<div id="studentDashboard" ng-show="lecturerDashboard">
+  <h2> Lecturer Dashboard </h2>
+  <p> All current courses </p>
+  <h3> Welcome back, {{username}} </h3>
+  <table>
+    <th>CourseID</th>
+    <th>Name</th>
+    <th>Overview</th>
+    <th>Year</th>
+    <th>Trimester</th>
+    <th>LectureTimes</th>
+    <tr ng-repeat="x in courseDirectoryData.courses">
+        <td>{{x.ID}}</td>
+        <td>{{x.Name}}</td>
+        <td>{{x.Overview}}</td>
+        <td>{{x.Year}}</td>
+        <td>{{x.Trimester}}</td>
+        <td>{{x.LectureTimes}}</td>
+        <td><button ng-click="deleteCourse(x.ID)">Delete</button></td>
+        <td><button ng-click="modifyCourse(x.ID)">Modify</button></td>
+    </tr>
+  </table>
+  <button class="btn btn-success" ng-click="getCourseData()">Reload Data!</button>
+</div>
+
+<!---****************- Lecturer Assignment PAGE *************-->
+<div id="studentDashboard" ng-show="lecturerAssignmentDirectory">
+<h2> Lecturer Assignment Directory </h2>
+  <table>
+    <th>assignments</th>
+    <th>course</th>
+    <th>details</th>
+    <th>deadline</th>
+  <tr ng-repeat="x in assigDirectoryData.assignments">
+      <td><button ng-click="assignmentDisplay(x.CourseID, x.Name, x.Overview, x.DueDate)" >{{x.Name}} </button></td>
+      <td>{{x.CourseID}}</td>
+      <td>{{x.Overview}}</td>
+      <td>{{x.DueDate}}</td>
+      <td><button ng-click="deleteAssignment(x.ID)">Delete</button></td>
+      <td><button ng-click="modifyAssignment(x.ID)">Modify</button></td>
+  </tr>
+  </table>
+
+  <button class="btn btn-success" ng-click="fetchAssigDirectory()">Reload Data!</button>
+
+  
+</div>
+
+<!--**************** Add Assignment Page *******************-->
+<div id="loginPage" ng-show="addAssignmentPage">
+  <form name="courseForm" novalidate>
+    <form action="">
+    <h1>Assignment</h1>
+    Assignment ID: <input type="number" ng-model="ID" ng-required="true"><br>
+    Name: <input ng-model="Name" ng-required="true"><br>
+    Overview: <input ng-model="Overview" ng-required="true"><br>
+    CourseID: <input ng-model="CourseID" ng-required="true"><br>
+    DueDate: <input ng-model="DueDate" ng-required="true"><br>
+    <button ng-click="postAssignment()" type="submit" ng-disabled="courseForm.$invalid" >Submit</button>
+    </form>
+  </form>
+</div>
+
+<!--**************** Student Association Page *******************-->
+<div id="studentDashboard" ng-show="studentAssociationPage">
+  <h1>Hey there, partner!</h1>
+  <h2> Student Association Enrolments </h2>
+  <p>Tracking students' enrolments</p>
+  <table>
+    <th>ID</th>
+    <th>StudentID</th>
+    <th>CourseID</th>
+  <tr ng-repeat="x in studentAssociationData.courseAssociations">
+      <td><button>{{x.ID}}</button></td>
+      <td>{{x.StudentID}}</td>
+      <td>{{x.CourseID}}</td>
+      <td><button ng-click="deleteAssociation(x.ID)">Delete</button></td>
+  </tr>
+  </table>
+
+  <button class="btn btn-success" ng-click="fetchStudentAssociation()">Reload Data!</button>
+
+  <!--**************** Add Association Page *******************-->
+  <form id="loginPage" name="courseForm" novalidate>
+    <form action="">
+    <h1>Add Student Association</h1>
+    Lecturer ID: <input type="number" ng-model="ID" ng-required="true"><br>
+    Student ID: <input type="number" ng-model="StudentID" ng-required="true"><br>
+    CourseID: <input ng-model="CourseID" ng-required="true"><br>
+    <button ng-click="postAssociation()" type="submit" ng-disabled="courseForm.$invalid" >Complete Association</button>
+    </form>
+  </form>
+</div>
+
+
+
+
+
+
+
+<!--**************** SHARED PAGES *******************-->
+
+
+
+<!-- ********* ADD COURSE PAGE ******************
+***************************************************
+************************************************** -->
+<div id="loginPage" ng-show="addCoursePage">
+  <form name="courseForm" novalidate>
+    <form action="">
+    <h1>Course</h1>
+    Course Name: <input ng-model="Name" ng-required="true"><br>
+    CourseID: <input type="number" ng-model="ID" ng-required="true"><br>
+    Overview: <input ng-model="Overview" ng-required="true"><br>
+    Year: <input ng-model="Year" ng-required="true"><br>
+    Trimester: <input ng-model="Trimester" ng-required="true"><br>
+    LectureTimes: <input ng-model="LectureTimes" ng-required="true"><br>
+    LecturerID: <input ng-model="LecturerID" ng-required="true"><br>
+    <button ng-click="postCourse()" type="submit" ng-disabled="courseForm.$invalid" >Submit</button>
+    </form>
+  </form>
+</div>
+
+<!--**************** Show specific assignment page *******************-->
+<div id="studentDashboard" ng-show="selectedAssignmentPage">
+  <section id="course-info">
+        <h1>{{specificAssignmentCourseID}}</h1>
+        <h2>{{specificAssignmentName}}</h2>
+        <h3>{{specificAssignmentDuedate}}</h3>
+        <p>{{specificAssignmentOverview}}</p>
+    </section>
+
+  <table>
+        <th>assignment</th>
+        <th>details</th>
+        <th>course</th>
+        <th>deadline</th>
+        <th> Completed </th>
+        
+          <tr>
+            <td>{{specificAssignmentName}}</td>
+            <td>{{specificAssignmentOverview}}</td>
+            <td>{{specificAssignmentCourseID}}</td>
+            <td>{{specificAssignmentDuedate}}</td>
+            <td> 
+              <label class="container">
+                <input type="checkbox">
+                  <span class="checkmark"> </span>
+              </label>
+            </td> 
+          </tr>
+      </table>
+
+</div>
+
+
+<!--**************** Show specific COURSE page *******************-->
+<div id="studentDashboard" ng-show="selectedCoursePage">
+  <section id="course-info">
+        <h1>{{specificCourseID}}</h1>
+        <h2>{{specificCourseName}}</h2>
+        <h3>{{specificCourseOverview}}</h3>
+        <p>{{specificCourseYear}}</p>
+    </section>
+
+  <table>
+        <th>CourseID</th>
+        <th>Course Name</th>
+        <th> Overview</th>
+        <th> Year</th>
+        <th> Trimester</th>
+        <th> Lecture Time</th>
+  
+        
+          <tr>
+            <td>{{specificCourseID}}</td>
+            <td>{{specificCourseName}}</td>
+            <td>{{specificCourseOverview}}</td>
+            <td>{{specificCourseYear}}</td>
+            <td>{{specificTrimester}}</td>
+            <td>{{specificCourseLectureTimes}}</td> 
+          </tr>
+      </table>
+
+</div>
+
+
+  </body>
+</html>
